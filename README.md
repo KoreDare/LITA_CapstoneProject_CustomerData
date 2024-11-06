@@ -1,11 +1,11 @@
 # LITA_CapstoneProject_CustomerData
 
 ### Project Objective
-This project aims to analyze the customer data for a subscription service in order to understand customer behaviour, track subscription types and identify key trends in cancellations and renewals. 
+This project aims to analyze the customer data for a subscription service in order to understand customer behaviour, track subscription types, and identify key trends in cancellations and renewals. 
 
 ### Data Sources
 The primary data source used here is CustomerData from the LITA Capstone Project. [Customer Data.xlsx](https://github.com/user-attachments/files/17645907/Customer.Data.xlsx)
-The dataset contains information about customers subscription patterns, types, revenue generated across regions and their active status.
+The dataset contains information about customers' subscription patterns, types, revenue generated across regions, and their active status.
 
 ### Data Tools
 - Microsoft Excel for Data Cleaning, Analysis, and Visualization
@@ -24,9 +24,9 @@ Using the PivotTables in Excel, I retrieved the parameters itemized below:
 
 I gathered that the region with the highest number of subscribers is the Eastern Region although the difference in subscriber count between the regions is negligible.
 
-The subscribers favoured the Basic bouquet more than the other subscription types. This may imply that most of the sunbscribers are satisfied with the features offered in the Basic bouquet and cannot be bothered to upgrade their subscription.
+The subscribers favoured the Basic bouquet more than the other subscription types. This may imply that most of the subscribers are satisfied with the features offered in the Basic bouquet and cannot be bothered to upgrade their subscription.
 
-Another thing worthy of note is that the Eastern region had 100% retention of subscribers. No one cancelled their subscription unlike the other regions which had more cancellations than active subscribers.
+Another thing worthy of note is that the Eastern region had 100% retention of subscribers. No one canceled their subscription, unlike the other regions which had 60% more cancellations than active subscribers.
 
 <img width="485" alt="Customer Data PivotTables" src="https://github.com/user-attachments/assets/2234c3ad-c48b-4a19-9df7-536af1652938">
 
@@ -53,7 +53,7 @@ I imported the dataset which I had saved as a .csv file from Excel after creatin
 > group by SubscriptionType
 > ```
 
-- Customers who cancelled their subscription within 6 months
+- Customers who canceled their subscription within 6 months
 
 > ```SQL
 > select CustomerName from [dbo].[CustomerData_Capstone_Project]
@@ -86,7 +86,7 @@ I imported the dataset which I had saved as a .csv file from Excel after creatin
 - Top 3 Regions by Subscription Cancellation
 
 > ```SQL
-> select Top 3 Region, count(CustomerID) as [Cancelled Subscription]
+> select Top 3 Region, count(CustomerID) as [Canceled Subscription]
 > from [dbo].[CustomerData_Capstone_Project]
 > where canceled = 'true'
 > group by Region
@@ -97,6 +97,6 @@ I imported the dataset which I had saved as a .csv file from Excel after creatin
 
 > ```SQL
 > select count(case when Canceled = 'False' then 1 end) as Active_subscription,
->        count(case when Canceled = 'True' then 1 end) as Cancelled_subscription
+>        count(case when Canceled = 'True' then 1 end) as Canceled_subscription
 > 	   from [dbo].[CustomerData_Capstone_Project]
 > ```
